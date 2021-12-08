@@ -3,6 +3,7 @@ package com.enterprise.entities.apiEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,43 +14,48 @@ import javax.persistence.*;
 @Entity
 public class Api {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    private String path;
-
-    @Column(nullable = false)
-    private String method;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Description description;
+//    @Column(nullable = false)
+//    private String path;
+//
+//    @Column(nullable = false)
+//    private String method;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Parameters parameters;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Description> description;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Tag tags;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Parameters> parameters;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Ref ref;
 
     @Override
     public String toString() {
         return "Api{" +
                 "id=" + id +
-                ", path='" + path + '\'' +
-                ", method='" + method + '\'' +
                 ", description=" + description +
                 ", parameters=" + parameters +
-                ", tags=" + tags +
                 '}';
     }
 }
+/*
+paths:{
+    description{
+    }
+    parameters[{
+
+        Ref{
+        }
+        Tag{
+        }
+    ]}
+}
+
+ */
+
 // "paths": {
 //         "/athletes/{id}/stats": {
 //         "get": {

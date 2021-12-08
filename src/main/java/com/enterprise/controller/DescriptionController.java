@@ -24,11 +24,15 @@ public class DescriptionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Description> FindOne(@PathVariable("id") Long id) throws Exception{
-        return ResponseEntity.ok(descriptionService.getById(id).orElseThrow(() -> new NoSuchElementException("Enterprise not found")));
+        return ResponseEntity.ok(descriptionService.getById(id).orElseThrow(() -> new NoSuchElementException("Description not found\n")));
     }
     @PostMapping
     public Description createDescription(@RequestBody Description description){
         return descriptionService.createdDescription(description);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateDescription(@PathVariable("id") Long id,@RequestBody Description description){
+        return ResponseEntity.ok(descriptionService.updateDescription(id, description));
     }
 
     @DeleteMapping("/{id}")

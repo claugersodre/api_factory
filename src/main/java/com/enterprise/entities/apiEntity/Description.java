@@ -16,8 +16,14 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class Description {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(nullable = false)
+    private String method;
+
+    @Column(nullable = false)
+    private String path;
 
     @Column(nullable = false)
     private String operationId;

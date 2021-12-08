@@ -1,5 +1,6 @@
 package com.enterprise.service;
 
+import com.enterprise.entities.apiEntity.Description;
 import com.enterprise.entities.enterprise.Enterprise;
 import com.enterprise.repository.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class EnterpriseService {
         if (enterpriseRepository.findById(id).isPresent()) {
             enterpriseRepository.deleteById(id);
             if (enterpriseRepository.findById(id).isEmpty()) {
-                return id + "is correct deleted";
+                return id + " is correct deleted";
             } else {
                 return "Failed to delete: " + id;
             }
@@ -43,6 +44,16 @@ public class EnterpriseService {
         else{
             return id+ " Not exist";
         }
+    }
+    public Object updateEnterprise(Long id, Enterprise enterprise){
+        if(enterpriseRepository.findById(id).isPresent() && (enterprise.getId() == id) ){
+            return enterpriseRepository.save(enterprise);
+        }
+        else if (enterpriseRepository.findById(id).isPresent()){
+            return "Id: "+id+ " is different form body";
+        }
+        else
+            return "Id: "+id+ " Not exist";
     }
 
 }

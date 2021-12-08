@@ -17,26 +17,36 @@ public class DescriptionService {
         return descriptionRepository.findAll();
     }
 
-    public Optional<Description> getById(Long idJornada) {
-        return descriptionRepository.findById(idJornada);
+    public Optional<Description> getById(Long id) {
+        return descriptionRepository.findById(id);
     }
 
     public Description createdDescription(Description Description){
         return descriptionRepository.save(Description);
+    }
+    public Object updateDescription(Long id, Description description){
+        if(descriptionRepository.findById(id).isPresent() && (description.getId() == id) ){
+            return descriptionRepository.save(description);
+        }
+        else if (descriptionRepository.findById(id).isPresent()){
+            return "Id: "+id+ " is different form body";
+        }
+        else
+            return "Id: "+id+ " Not exist";
     }
     public String deleteDescription(Long id) {
 
         if (descriptionRepository.findById(id).isPresent()) {
             descriptionRepository.deleteById(id);
             if (descriptionRepository.findById(id).isEmpty()) {
-                return id + "is correct deleted";
+                return "Id: "+id + " is correct deleted";
             } else {
                 return "Failed to delete: " + id;
             }
 
         }
         else{
-            return id+ " Not exist";
+            return "Id: "+id+ " Not exist";
         }
     }
 
