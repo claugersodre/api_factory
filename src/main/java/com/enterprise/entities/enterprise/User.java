@@ -20,14 +20,22 @@ public class User {
     private Boolean admin;
 
     @Column(nullable = false)
-    private String name;
+    private String username;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    @Column(nullable = false)
+    private String password;
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", admin=" + admin +
-                ", name='" + name + '\'' +
+                ", name=" + username +
+                ", password= '"+password+ '\'' +
                 '}';
     }
 }
