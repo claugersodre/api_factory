@@ -1,5 +1,7 @@
 package com.enterprise.config;
 
+import com.enterprise.entities.enterprise.User;
+import com.enterprise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,12 +12,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/auth")
 public class JwtAuthenticationController {
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -29,13 +37,14 @@ public class JwtAuthenticationController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
 			throws Exception {
-		System.out.println("User received on controller: "+authenticationRequest);
+		//System.out.println("User received on controller: "+authenticationRequest);
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
 		final UserDetails userDetails = jwtInMemoryUserDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
 				System.out.println("=============");
 				System.out.println(userDetails);
+
 		final String token = "Bearer "+jwtTokenUtil.generateToken(userDetails);
 
 		return ResponseEntity.ok(token);
@@ -44,12 +53,18 @@ public class JwtAuthenticationController {
 	private void authenticate(String username, String password) throws Exception {
 		Objects.requireNonNull(username);
 		Objects.requireNonNull(password);
-		System.out.println("Authenticate: "+username+" "+password);
-		if(username.equals("clauger")&&(password.equals("123456"))){
-			System.out.println("Credentials passs");
+		//System.out.println("Authenticate: "+username+" "+password);
+		List<User> found =userService.getUserByName(username);
+		//System.out.println("found "+found);
+		AtomicBoolean ok = new AtomicBoolean(false);
+		if(!found.isEmpty()){
+
+			found.stream().forEach(x->{
+				ok.set(x.getUsername().equals(username) && x.getPassword().equals(password));
+			});
+
 		}
-		else {
-			System.out.println("Credential fail");
+		if(found.isEmpty() || !ok.get()) {
 			try {
 				authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			} catch (DisabledException e) {

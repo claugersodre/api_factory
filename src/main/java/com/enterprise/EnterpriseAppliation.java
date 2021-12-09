@@ -1,11 +1,13 @@
 package com.enterprise;
 
+import com.enterprise.entities.enterprise.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class EnterpriseAppliation {
     public static void main(String[] args) {
+        User user1 = new User(1L,true,"clauger","123456");
         SpringApplication.run(EnterpriseAppliation.class, args);
 
 //        User user1 = new User(1L,false,"Jhon");

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -60,4 +61,12 @@ public class UserService {
             return "Id: "+id+ " Not exist";
     }
 
+    public List<User> getUserByName(String name){
+        List<User> listAll = UserRepository.findAll();
+        List<User> found =  listAll.stream().filter(x->x.getUsername().equals(name)).collect(Collectors.toList());
+        found.stream().forEach(System.out::println);
+
+            return found;
+
+    }
 }
