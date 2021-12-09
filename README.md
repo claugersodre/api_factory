@@ -32,3 +32,12 @@ utilizo o payload do token nos endpoints para verificar se o usuário pode execu
 Regras de gerenciamento do workspace do usuário.
 criar, listar, atualizar e deletar Especificações de API que estiverem em Workspaces aos quais pertençam-> Não implementado, o usuário pode realizar as operações nas APIs de qualquer workspace
 
+## Para rodar o projeto
+na pasta raiz do projeto
+mvn package && java -jar target/gs-spring-boot-docker-0.1.0.jar
+docker-compose build
+docker-compose up
+
+pagina inicial
+
+http://localhost:8085/swagger-ui.html
