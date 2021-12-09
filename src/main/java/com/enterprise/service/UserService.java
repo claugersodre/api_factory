@@ -63,6 +63,7 @@ public class UserService {
 
     public List<User> getUserByName(String name){
         List<User> listAll = UserRepository.findAll();
+        System.out.println(listAll);
         List<User> found =  listAll.stream().filter(x->x.getUsername().equals(name)).collect(Collectors.toList());
         found.stream().forEach(System.out::println);
 

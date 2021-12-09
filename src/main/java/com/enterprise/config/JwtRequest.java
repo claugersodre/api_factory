@@ -8,11 +8,21 @@ public class JwtRequest implements Serializable {
 	
 	private String username;
 	private String password;
+	private String admin;
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
+	public String getAdmin() {
+		return admin;
+	}
 
 	@Override
 	public String toString() {
 		return "JwtRequest{" +
 				"username='" + username + '\'' +
+				"admin='" + admin + '\'' +
 				", password='" + password + '\'' +
 				'}';
 	}

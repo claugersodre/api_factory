@@ -1,13 +1,25 @@
 package com.enterprise;
 
 import com.enterprise.entities.enterprise.User;
+
+import com.enterprise.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
 @SpringBootApplication
 public class EnterpriseAppliation {
+
+
+
     public static void main(String[] args) {
-        User user1 = new User(1L,true,"clauger","123456");
+
+
+
+
         SpringApplication.run(EnterpriseAppliation.class, args);
 
 //        User user1 = new User(1L,false,"Jhon");
@@ -20,4 +32,6 @@ public class EnterpriseAppliation {
 
 
     }
+
+
 }
