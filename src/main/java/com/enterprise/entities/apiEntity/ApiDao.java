@@ -1,4 +1,2 @@
-package com.enterprise.entities.apiEntity;
-
-public class ApiDao {
+package com.enterprise.entities.apiEntity;public class ApiDao {
 }
