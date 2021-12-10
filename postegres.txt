@@ -1,0 +1,2 @@
+https://www.baeldung.com/spring-boot-postgresql-docker
+https://www.devmedia.com.br/spring-boot-como-criar-um-servidor-rest-com-spring-data/34006
