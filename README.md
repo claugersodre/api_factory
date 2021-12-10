@@ -23,14 +23,12 @@ buscar um novo token no endpoint http:localhost:8085/auth/authenticate metodo Po
 
 ## Funções não implementadas
 
-Integração com banco postgress
-está na versão de testes utilizando o banco H2.
 
 criptografia do payload do token
 utilizo o payload do token nos endpoints para verificar se o usuário pode executar determinada funcionalidade.
 
 Regras de gerenciamento do workspace do usuário.
-criar, listar, atualizar e deletar Especificações de API que estiverem em Workspaces aos quais pertençam-> Não implementado, o usuário pode realizar as operações nas APIs de qualquer workspace
+criar, listar, atualizar e deletar Especificações de API que estiverem em Workspaces aos quais pertençam-> Não implementado, o usuário pode realizar as operações nas APIs de qualquer workspace -- falta implementar consultas no banco para validar as regras de gerenciamento
 
 ## Para rodar o projeto
 na pasta raiz do projeto
