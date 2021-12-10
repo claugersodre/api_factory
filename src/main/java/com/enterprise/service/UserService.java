@@ -1,7 +1,7 @@
 package com.enterprise.service;
 
 
-import com.enterprise.entities.enterprise.User;
+import com.enterprise.entities.enterprise.UserApi;
 import com.enterprise.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +16,18 @@ public class UserService {
     @Autowired
     public UserService(UserRepository UserRepository){this.UserRepository=UserRepository;}
 
-    public List<User> findAll(){
+    public List<UserApi> findAll(){
         return UserRepository.findAll();
     }
 
-    public Optional<User> getById(Long id) {
+    public Optional<UserApi> getById(Long id) {
         return UserRepository.findById(id);
     }
 
-    public User createUser(User User){
+    public UserApi createUser(UserApi User){
         return UserRepository.save(User);
     }
-    public Object UserParameters(Long id, User User){
+    public Object UserParameters(Long id, UserApi User){
         if(UserRepository.findById(id).isPresent() && (User.getId() == id) ){
             return UserRepository.save(User);
         }
@@ -50,7 +50,7 @@ public class UserService {
             return "Id: "+id+ " Not exist";
         }
     }
-    public Object updateUser(Long id, User User){
+    public Object updateUser(Long id, UserApi User){
         if(UserRepository.findById(id).isPresent() && (User.getId() == id) ){
             return UserRepository.save(User);
         }
@@ -61,10 +61,10 @@ public class UserService {
             return "Id: "+id+ " Not exist";
     }
 
-    public List<User> getUserByName(String name){
-        List<User> listAll = UserRepository.findAll();
+    public List<UserApi> getUserByName(String name){
+        List<UserApi> listAll = UserRepository.findAll();
         System.out.println(listAll);
-        List<User> found =  listAll.stream().filter(x->x.getUsername().equals(name)).collect(Collectors.toList());
+        List<UserApi> found =  listAll.stream().filter(x->x.getUsername().equals(name)).collect(Collectors.toList());
         found.stream().forEach(System.out::println);
 
             return found;

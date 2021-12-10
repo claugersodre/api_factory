@@ -1,5 +1,6 @@
 package com.enterprise.service;
 
+import com.enterprise.entities.enterprise.UserApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     private UserService userService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<com.enterprise.entities.enterprise.User> found =userService.getUserByName(username);
+        List<UserApi> found =userService.getUserByName(username);
 
         if (found.stream().iterator().next().getUsername().equals(username)) {
 //            return new User(found.stream().iterator().next().getUsername(),found.stream().iterator().next().getPassword(),found.stream().iterator().next().getAdmin(),

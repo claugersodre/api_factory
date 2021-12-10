@@ -4,6 +4,7 @@ import com.enterprise.entities.apiEntity.Api;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,10 +32,10 @@ public class Workspace {
     private String name;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<UserApi> user;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Api api;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Api> api;
 }

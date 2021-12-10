@@ -2,6 +2,7 @@ package com.enterprise.entities.enterprise;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,8 +20,8 @@ public class Enterprise {
     private String name;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Workspace workspace;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Workspace> workspace;
 
     @Override
     public String toString() {

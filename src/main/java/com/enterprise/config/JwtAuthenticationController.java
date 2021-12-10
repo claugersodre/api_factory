@@ -1,6 +1,6 @@
 package com.enterprise.config;
 
-import com.enterprise.entities.enterprise.User;
+import com.enterprise.entities.enterprise.UserApi;
 import com.enterprise.hash.Hash;
 import com.enterprise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @RestController
@@ -45,7 +44,7 @@ public class JwtAuthenticationController {
 				.loadUserByUsername(authenticationRequest.getUsername());
 //				System.out.println("=============");
 //				System.out.println(userDetails);
-		List<com.enterprise.entities.enterprise.User> found =userService.getUserByName(authenticationRequest.getUsername());
+		List<UserApi> found =userService.getUserByName(authenticationRequest.getUsername());
 		final String token = "Bearer "+jwtTokenUtil.generateToken(userDetails, found.stream().iterator().next().getAdmin());
 
 		return ResponseEntity.ok(token);
@@ -55,7 +54,7 @@ public class JwtAuthenticationController {
 		Objects.requireNonNull(username);
 		Objects.requireNonNull(password);
 		System.out.println("Authenticate: "+username+" "+password);
-		List<User> found =userService.getUserByName(username);
+		List<UserApi> found =userService.getUserByName(username);
 		System.out.println("found "+found);
 		AtomicBoolean ok = new AtomicBoolean(false);
 
