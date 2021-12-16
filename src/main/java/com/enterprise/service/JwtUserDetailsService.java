@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
+    //Service to find user on db
     @Autowired
     private UserService userService;
     @Override

@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 public class Enterprise {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)

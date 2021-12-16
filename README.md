@@ -35,7 +35,7 @@ na pasta raiz do projeto
 mvn package && java -jar target/gs-spring-boot-docker-0.1.0.jar
 docker-compose build
 docker-compose up
-inserir no banco o usuário (  "user","0372a6563b50a2501604ae365d994e66",true)
+inserir no banco o usuário (1l,  "user","e1aba48178af68eef61976b46623c152",true)
 
 pagina inicial
 

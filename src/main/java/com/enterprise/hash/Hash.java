@@ -29,7 +29,10 @@ public class Hash {
             MessageDigest md = MessageDigest.getInstance("MD5");
 
             // Add password bytes to digest
-            md.update("${jwt.secret}".getBytes());
+
+            String salt= "${salt}";
+
+            md.update(salt.getBytes());
 
             // Get the hash's bytes
             byte[] bytes = md.digest(passwordToHash.getBytes());
